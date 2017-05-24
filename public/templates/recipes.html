@@ -29,16 +29,17 @@
 <!-- TODO Add a directive to this div element so that it repeats 
   for each recipe to display. Also, add a directive to this div element 
   so that it only displays when there are recipes to display. -->
-<div class="grid-100 row addHover">
+<div class="grid-100 row addHover" ng-repeat="recipe in allrecipes">
   <!-- TODO Replace this anchor element's href attribute with a 
     directive so that you can route the user to the Recipe Detail 
     screen when they click on a row. -->
   <a href="#">
     <div class="grid-70">
+        <h3>{{recipe.name}}</h3>
       <p>
-        <!-- TODO Add binding expressions here in order to 
-          display information about the recipe. -->
+        {{recipe.description}}
       </p>
+      <p>{{recipe.category}}</p>
     </div>
   </a>
   <div class="hoverBlock">

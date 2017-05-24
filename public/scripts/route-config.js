@@ -11,17 +11,17 @@
 
   // TODO Uncomment this code after you've configured the `app` module.
   
-  // angular
-  //   .module('app')
-  //   .config(config);
+   angular
+     .module('app')
+     .config(config);
 
-  // function config($routeProvider) {
-  //   $routeProvider
-  //     .when('/', {
-  //       controller: 'RecipesController',
-  //       controllerAs: 'vm',
-  //       templateUrl: 'templates/recipes.html'
-  //     })
+   function config($routeProvider) {
+     $routeProvider
+       .when('/', {
+         controller: 'recipesController',
+         controllerAs: 'vm',
+         templateUrl: 'templates/recipes.html'
+       })
   //     .when('/edit/:id', {
   //       controller: 'RecipeDetailController',
   //       controllerAs: 'vm',
@@ -32,8 +32,8 @@
   //       controllerAs: 'vm',
   //       templateUrl: 'templates/recipe-detail.html'
   //     })
-  //     .otherwise({
-  //       redirectTo: '/'
-  //     });
-  // }
+       .otherwise({
+         redirectTo: '/'
+       });
+   }
 })();
