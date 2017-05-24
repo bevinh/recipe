@@ -1,16 +1,19 @@
 angular.module('app')
-    .service('dataService', function($http){
-        this.getRecipes = function(callback) {
-            $http.get('/api/recipes')
-                .then(callback);
-        }
-    })
-.controller('recipesController', function(dataService, $scope){
 
+.controller('recipesController', function(dataService, $scope, $location){
+
+    //gets all recipes
     dataService.getRecipes(function(response){
-        console.log(response.data);
        $scope.allrecipes = response.data;
    });
+
+    //gets categories for dropdown
+    dataService.getCategories(function(response){
+        $scope.categories = response.data;
+    });
+    $scope.addNewRecipe = function(){
+        $location.path("/add")
+    }
 
 });
 

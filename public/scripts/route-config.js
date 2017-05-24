@@ -27,11 +27,11 @@
   //       controllerAs: 'vm',
   //       templateUrl: 'templates/recipe-detail.html'
   //     })
-  //     .when('/add', {
-  //       controller: 'RecipeDetailController',
-  //       controllerAs: 'vm',
-  //       templateUrl: 'templates/recipe-detail.html'
-  //     })
+       .when('/add', {
+         controller: 'recipeDetailController',
+         controllerAs: 'vm',
+         templateUrl: 'templates/recipe-detail.html'
+       })
        .otherwise({
          redirectTo: '/'
        });
