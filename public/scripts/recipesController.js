@@ -4,6 +4,7 @@ angular.module('app')
 
     //gets all recipes
     dataService.getRecipes(function(response){
+        console.log(response.data)
        $scope.allrecipes = response.data;
    });
 

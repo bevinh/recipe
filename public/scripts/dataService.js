@@ -13,6 +13,12 @@ angular.module('app')
 
         this.addRecipe = function(callback) {
             $http.post('/api/recipes')
+                .then(callback)
+        }
+
+        this.getFoodItems = function(callback) {
+            $http.get('/api/fooditems ')
+                .then(callback)
         }
     });
 
