@@ -127,16 +127,10 @@
       <label> Amount </label>
     </p>
   </div>
-
-  <!-- TODO Add a directive to this div element so that it repeats 
-    for each recipe ingredient to display. -->
-  <div class="ingredient-row">
+  <div class="ingredient-row" ng-repeat="ingredient in recipe.ingredients">
     <div class="prefix-20 grid-30">
       <p>
-        <!-- TODO Add directives to this select element to bind its value 
-          to the recipe ingredient model's `foodItem` property and to 
-          populate the list with the food items from the database. -->
-        <select ng-model="recipe.ingredient.foodItem.name">
+        <select ng-model="ingredient.name">
           <option value="">Select Item</option>
           <option value="{{fooditem.name}}" ng-repeat="fooditem in foodItems">{{fooditem.name}}</option>
         </select>
@@ -144,32 +138,28 @@
     </div>
     <div class="grid-30">
       <p>
-        <!-- TODO Add a directive to this input element to bind its value 
+        <!-- TODO Add a directive to this input element to bind its value
           to the recipe ingredient model's `condition` property. -->
-        <input ng-model="recipe.ingredient.foodItem.condition" type="text">
+        <input ng-model="ingredient.condition" type="text">
       </p>
     </div>
     <div class="grid-15">
       <p>
-        <!-- TODO Add a directive to this input element to bind its value 
+        <!-- TODO Add a directive to this input element to bind its value
           to the recipe ingredient model's `amount` property. -->
-        <input type="text">
+        <input ng-model="ingredient.amount" type="text">
       </p>
     </div>
     <div class="grid-5 pad-top">
       <p class="flush-right">
-        <!-- TODO Add a directive to this anchor element so that you can 
-          delete the recipe ingredient when the user clicks on the 'Delete' link. -->
-        <a class="no-action-link"> <img src="images/delete.svg" height="12px"> </a>
+        <a class="no-action-link" ng-click="removeRecipeIngredient($index, recipe)"> <img src="images/delete.svg" height="12px"> </a>
       </p>
     </div>
   </div>
 
   <div class="prefix-20 grid-80 add-row">
     <p>
-      <!-- TODO Add a directive to this button in order to handle 
-        when the user clicks to add a new recipe ingredient. -->
-      <button>+ Add Another Ingredient</button>
+      <button ng-click="addRecipeItem()">+ Add Another Ingredient</button>
     </p>
   </div>
 
