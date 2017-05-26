@@ -14,9 +14,13 @@ angular.module('app')
             $http.get('/api/categories')
                 .then(callback);
         }
-
+        this.updateRecipe = function(dataObj, callback){
+            var url = '/api/recipes/' +  dataObj._id
+            $http.put(url, dataObj)
+                .then(callback)
+        }
         this.addRecipe = function(dataObj, callback) {
-            $http.post('/api/recipes', {'recipe': dataObj})
+            $http.post('/api/recipes', dataObj)
                 .then(function(response){
                     console.log(response);
                 })

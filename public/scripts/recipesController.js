@@ -4,7 +4,6 @@ angular.module('app')
 
     //gets all recipes
     dataService.getRecipes(function(response){
-        console.log(response.data)
        $scope.allrecipes = response.data;
    });
 
@@ -12,9 +11,18 @@ angular.module('app')
     dataService.getCategories(function(response){
         $scope.categories = response.data;
     });
+
+    //funtion to add a new recipe
     $scope.addNewRecipe = function(){
         $location.path("/add")
-    }
+    };
+
+    //function to edit a recipe
+    $scope.goToRecipe = function(rid) {
+        var path  = '/edit/' + rid;
+        $location.url(path)
+    };
+
 });
 
 
