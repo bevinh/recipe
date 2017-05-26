@@ -15,7 +15,6 @@ angular.module('app')
     $scope.addNewRecipe = function(){
         $location.path("/add")
     }
-
 });
 
 

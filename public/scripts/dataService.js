@@ -5,16 +5,22 @@ angular.module('app')
             $http.get('/api/recipes')
                 .then(callback);
         }
+        this.getRecipe = function(id, callback) {
+            $http.get('/api/recipes/' + id)
+                .then(callback);
+        }
 
         this.getCategories = function(callback) {
             $http.get('/api/categories')
                 .then(callback);
         }
 
-        this.addRecipe = function(callback) {
-            $http.post('/api/recipes')
-                .then(callback)
-        }
+        this.addRecipe = function(dataObj, callback) {
+            $http.post('/api/recipes', {'recipe': dataObj})
+                .then(function(response){
+                    console.log(response);
+                })
+        };
 
         this.getFoodItems = function(callback) {
             $http.get('/api/fooditems ')

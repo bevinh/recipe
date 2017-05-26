@@ -130,7 +130,7 @@
   <div class="ingredient-row" ng-repeat="ingredient in recipe.ingredients">
     <div class="prefix-20 grid-30">
       <p>
-        <select ng-model="ingredient.name">
+        <select ng-model="ingredient.foodItem">
           <option value="">Select Item</option>
           <option value="{{fooditem.name}}" ng-repeat="fooditem in foodItems">{{fooditem.name}}</option>
         </select>

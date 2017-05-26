@@ -22,11 +22,11 @@
          controllerAs: 'vm',
          templateUrl: 'templates/recipes.html'
        })
-  //     .when('/edit/:id', {
-  //       controller: 'RecipeDetailController',
-  //       controllerAs: 'vm',
-  //       templateUrl: 'templates/recipe-detail.html'
-  //     })
+       .when('/edit/:id', {
+         controller: 'recipeDetailController',
+         controllerAs: 'vm',
+         templateUrl: 'templates/recipe-detail.html'
+       })
        .when('/add', {
          controller: 'recipeDetailController',
          controllerAs: 'vm',
