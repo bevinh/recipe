@@ -1,14 +1,30 @@
 angular.module('app')
 
     .controller('recipeDetailController', function(dataService, $scope, $routeParams, $location){
-        $scope.recipe = {name: '', description: '', category: '', prepTime: '', cookTime: '', ingredients: [{foodItem: '', condition: '', amount: ''}], steps: [{description: ''}]};
 
+        this.checkRecipe = function() {
+            var url = $location.path()
+            if (url == '/add') {
 
-        //gets the individual recipe
-        dataService.getRecipe($routeParams.id, function(response){
-            console.log(response.data)
-            $scope.recipe = response.data
-        });
+                $scope.recipe = {
+                    name: '',
+                    description: '',
+                    category: '',
+                    prepTime: '',
+                    cookTime: '',
+                    ingredients: [{foodItem: '', condition: '', amount: ''}],
+                    steps: [{description: ''}]
+                };
+
+            } else {
+                //gets the individual recipe
+                dataService.getRecipe($routeParams.id, function (response) {
+                    $scope.recipe = response.data
+                });
+            }
+        };
+        this.checkRecipe();
+
 
         //gets categories for dropdown
         dataService.getCategories(function(response){
@@ -20,11 +36,13 @@ angular.module('app')
             $scope.foodItems = response.data;
         });
         $scope.saveRecipe = function(recipe){
-            dataService.addRecipe(recipe);
-            $location.url('/');
-        };
-        $scope.updateRecipe = function(recipe){
-            dataService.updateRecipe(recipe);
+            var url = $location.path()
+            if(url == '/edit/' + recipe._id){
+                dataService.updateRecipe(recipe);
+            } else {
+                dataService.addRecipe(recipe);
+            }
+
             $location.url('/');
         };
 

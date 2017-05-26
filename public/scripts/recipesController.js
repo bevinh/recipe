@@ -1,6 +1,6 @@
 angular.module('app')
 
-.controller('recipesController', function(dataService, $scope, $location){
+.controller('recipesController', function(dataService, $scope, $location, $window){
 
     //gets all recipes
     dataService.getRecipes(function(response){
@@ -22,6 +22,11 @@ angular.module('app')
         var path  = '/edit/' + rid;
         $location.url(path)
     };
+
+    $scope.deleteRecipe = function(rid){
+        dataService.deleteRecipe(rid);
+        $window.location.reload();
+    }
 
 });
 
