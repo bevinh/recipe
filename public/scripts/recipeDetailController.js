@@ -2,8 +2,9 @@ angular.module('app')
 
     .controller('recipeDetailController', function(dataService, $scope, $routeParams, $location){
 
+        //function that checks to see whether you're in add or edit mode, to provide the appropriate info
         this.checkRecipe = function() {
-            var url = $location.path()
+            var url = $location.path();
             if (url == '/add') {
 
                 $scope.recipe = {
@@ -23,6 +24,7 @@ angular.module('app')
                 });
             }
         };
+
         this.checkRecipe();
 
 
@@ -36,16 +38,29 @@ angular.module('app')
             $scope.foodItems = response.data;
         });
 
+        //save recipe function, including validation
         $scope.saveRecipe = function(recipe){
-            var url = $location.path()
+            var url = $location.path();
+
+            //if in edit mode, use update recipe
             if(url == '/edit/' + recipe._id){
-                dataService.updateRecipe(recipe)
-            } else {
-                dataService.addRecipe(recipe).then(function(data){
-                    console.log(data)
+                dataService.updateRecipe(recipe).then(function(data){
                     if(data.status != '201'){
-                        $scope.errors = []
-                        var obj = data.data.errors
+                        $scope.errors = [];
+                        var obj = data.data.errors;
+                        for (var key in obj) {
+                            $scope.errors.push(data.data.errors[key][0])
+                        }
+                    } else {
+                        $location.url('/');
+                    }
+                })
+            } else {
+            //if in add mode, use add recipe
+                dataService.addRecipe(recipe).then(function(data){
+                    if(data.status != '201'){
+                        $scope.errors = [];
+                        var obj = data.data.errors;
                         for (var key in obj) {
                             $scope.errors.push(data.data.errors[key][0])
                         }
@@ -59,14 +74,17 @@ angular.module('app')
 
         };
 
+        //function to add an ingredient
         $scope.addRecipeItem = function() {
                  $scope.recipe.ingredients.push({name: '', condition: '', amount: '' })
         };
 
+        //function to add a step
         $scope.addStep = function() {
             $scope.recipe.steps.push({description: '' })
         };
 
+        //function to remove an ingredient
         $scope.removeRecipeIngredient = function(index, recipe){
             var ingredient = recipe.ingredients[index];
             if(ingredient.id){
@@ -76,6 +94,7 @@ angular.module('app')
             }
         };
 
+        //function to remove a step
         $scope.removeStep = function(index, recipe){
             var step = recipe.steps[index];
             if(step.id){
@@ -85,6 +104,7 @@ angular.module('app')
             }
         };
 
+        //function to return to the home screen without acting
         $scope.returnToList = function(){
             $location.url('/');
         }

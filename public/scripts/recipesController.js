@@ -23,6 +23,7 @@ angular.module('app')
         $location.url(path)
     };
 
+    //function to delete a recipe
     $scope.deleteRecipe = function(rid){
         if ( window.confirm('Are you sure you want to delete this recipe?') ) {
             dataService.deleteRecipe(rid);
