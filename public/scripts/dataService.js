@@ -26,10 +26,13 @@ angular.module('app')
         };
 
         this.addRecipe = function(dataObj, callback) {
-            $http.post('/api/recipes', dataObj)
-                .then(callback)
-        };
-
+           return $http.post('/api/recipes', dataObj).then(function(data){
+                return data
+           }, function(data, status) {
+                // Handle HTTP error
+                return data
+            })
+        }
         this.getFoodItems = function(callback) {
             $http.get('/api/fooditems ')
                 .then(callback)

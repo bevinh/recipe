@@ -35,15 +35,28 @@ angular.module('app')
         dataService.getFoodItems(function(response){
             $scope.foodItems = response.data;
         });
+
         $scope.saveRecipe = function(recipe){
             var url = $location.path()
             if(url == '/edit/' + recipe._id){
-                dataService.updateRecipe(recipe);
+                dataService.updateRecipe(recipe)
             } else {
-                dataService.addRecipe(recipe);
+                dataService.addRecipe(recipe).then(function(data){
+                    console.log(data)
+                    if(data.status != '201'){
+                        $scope.errors = []
+                        var obj = data.data.errors
+                        for (var key in obj) {
+                            $scope.errors.push(data.data.errors[key][0])
+                        }
+                    } else {
+                        $location.url('/');
+                    }
+
+                })
+
             }
 
-            $location.url('/');
         };
 
         $scope.addRecipeItem = function() {
