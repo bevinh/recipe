@@ -24,8 +24,11 @@ angular.module('app')
     };
 
     $scope.deleteRecipe = function(rid){
-        dataService.deleteRecipe(rid);
-        $window.location.reload();
+        if ( window.confirm('Are you sure you want to delete this recipe?') ) {
+            dataService.deleteRecipe(rid);
+            $window.location.reload();
+        }
+
     }
 
 });
