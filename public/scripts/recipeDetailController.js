@@ -47,7 +47,7 @@ angular.module('app')
             //if in edit mode, use update recipe
             if(url == '/edit/' + recipe._id){
                 dataService.updateRecipe(recipe).then(function(data){
-                    if(data.status != '201'){
+                    if(data.status == '400'){
                         $scope.errors = [];
                         var obj = data.data.errors;
                         for (var key in obj) {
@@ -60,7 +60,7 @@ angular.module('app')
             } else {
             //if in add mode, use add recipe
                 dataService.addRecipe(recipe).then(function(data){
-                    if(data.status != '201'){
+                    if(data.status == '400'){
                         $scope.errors = [];
                         var obj = data.data.errors;
                         for (var key in obj) {
