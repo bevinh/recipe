@@ -1,3 +1,5 @@
+(function() {
+    'use strict';
 angular.module('app')
 
     .controller('recipeDetailController', function(dataService, $scope, $routeParams, $location){
@@ -109,4 +111,5 @@ angular.module('app')
             $location.url('/');
         }
 
-    });
+    })
+})();

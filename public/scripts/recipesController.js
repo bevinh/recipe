@@ -1,3 +1,5 @@
+(function() {
+    'use strict';
 angular.module('app')
 
 .controller('recipesController', function(dataService, $scope, $location, $window){
@@ -32,7 +34,8 @@ angular.module('app')
 
     }
 
-});
+    })
+})();
 
 
 
