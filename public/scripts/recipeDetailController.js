@@ -112,4 +112,4 @@ angular.module('app')
         }
 
     })
-})();
+}());
