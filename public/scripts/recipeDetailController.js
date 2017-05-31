@@ -109,7 +109,7 @@ angular.module('app')
         //function to return to the home screen without acting
         $scope.returnToList = function(){
             $location.url('/');
-        }
+        };
 
-    })
-}());
+    });
+})();

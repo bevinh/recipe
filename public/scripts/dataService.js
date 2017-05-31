@@ -53,9 +53,9 @@ angular.module('app')
         this.getFoodItems = function(callback) {
             $http.get('/api/fooditems ')
                 .then(callback)
-        }
-    })
-}());
+        };
+    });
+})();
 
 
 

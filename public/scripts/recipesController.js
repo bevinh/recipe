@@ -32,10 +32,10 @@ angular.module('app')
             $window.location.reload();
         }
 
-    }
+    };
 
-    })
-}());
+    });
+})();
 
 
 
